@@ -1,0 +1,8 @@
+<linker>
+  <assembly fullname="GameFrameX.Advertisement.CSJ.Runtime">
+    <type fullname="GameFrameX.Advertisement.CSJ.Runtime.CSJAdvertisementConfig" preserve="all" />
+    <type fullname="GameFrameX.Advertisement.CSJ.Runtime.CSJAdvertisementManager" preserve="all" />
+    <type fullname="GameFrameX.Advertisement.CSJ.Runtime.CSJBridge" preserve="all" />
+    <type fullname="GameFrameX.Advertisement.CSJ.Runtime.CSJNativeMessageHandler" preserve="all" />
+  </assembly>
+</linker>

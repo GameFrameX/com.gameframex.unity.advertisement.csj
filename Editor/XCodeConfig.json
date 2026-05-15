@@ -1,0 +1,46 @@
+{  
+  "unityFramework": {
+    "libs": {
+      "+": [
+        "libc++.tbd",
+        "libc++abi.tbd",
+        "libiconv.tbd",
+        "libresolv.9.tbd",
+        "libxml2.tbd"
+      ],
+      "-": []
+    },
+    "frameworks": {
+      "+": [
+        "CoreHaptics.framework",
+        "AudioToolbox.framework",
+        "AVFoundation.framework",
+        "CoreGraphics.framework",
+        "CoreImage.framework",
+        "CoreLocation.framework",
+        "CoreMedia.framework",
+        "CoreMotion.framework",
+        "CoreTelephony.framework",
+        "CoreText.framework",
+        "ImageIO.framework",
+        "MapKit.framework",
+        "QuartzCore.framework",
+        "StoreKit.framework",
+        "UIKit.framework",
+        "DeviceCheck.framework"
+      ],
+      "-": []
+    },
+    "otherLinkerFlag": {
+      "OTHER_LDFLAGS": [
+        "-l\"c++\"",
+        "-l\"c++abi\"",
+        "-l\"sqlite3\"",
+        "-l\"z\""
+      ]
+    }
+  },
+  "plist": {
+    "NSAllowsArbitraryLoads": true
+  }
+}

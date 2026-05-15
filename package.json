@@ -1,0 +1,34 @@
+{
+  "name": "com.gameframex.unity.advertisement.csj",
+  "displayName": "Game Frame X Advertisement (CSJ/穿山甲)",
+  "category": "Game Framework X",
+  "description": "Game Frame X Advertisement CSJ (穿山甲) Component for iOS/Android",
+  "version": "1.0.0",
+  "unity": "2019.4",
+  "keywords": [
+    "Game Framework X",
+    "Advertisement",
+    "CSJ",
+    "穿山甲"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.advertisement.csj",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.advertisement.csj.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  }
+}
