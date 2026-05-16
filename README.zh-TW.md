@@ -66,13 +66,14 @@
 
 在 Unity Inspector 中設定：將 `AdvertisementComponent` 新增到 GameObject，然後在實作類型下拉選單中選擇 `CSJAdvertisementManager`。
 
-> **提示：** 如果已安裝 `com.gameframex.unity.entry`，可以使用 `GameApp` 靜態門面類別進行快捷呼叫：`GameApp.Advertisement` 替代 `GameEntry.GetComponent<AdvertisementComponent>()`。
-
 ```csharp
 using GameFrameX.Advertisement.Runtime;
 
+// 標準方式：透過 GameEntry（不依賴 com.gameframex.unity.entry）
+var adComponent = GameEntry.GetComponent<AdvertisementComponent>();
+
 // 設定伺服器端驗證資料（可選）
-GameApp.Advertisement.SetExtraData("userId", player.UserId);
+adComponent.SetExtraData("userId", player.UserId);
 
 // 播放激勵影片廣告
 var option = new AdvertisementPlayOption
@@ -87,7 +88,23 @@ var option = new AdvertisementPlayOption
         }
     },
 };
-GameApp.Advertisement.Play(option);
+adComponent.Play(option);
+
+// 快捷方式：透過 GameApp（需要 com.gameframex.unity.entry）
+GameApp.Advertisement.SetExtraData("userId", player.UserId);
+var option2 = new AdvertisementPlayOption
+{
+    OnSuccess    = (data) => Debug.Log("廣告展示成功"),
+    OnFail       = (err) => Debug.LogError($"廣告展示失敗: {err}"),
+    OnShowResult = (watched) =>
+    {
+        if (watched)
+        {
+            // 發放獎勵
+        }
+    },
+};
+GameApp.Advertisement.Play(option2);
 ```
 
 ## 平台支援

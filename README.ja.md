@@ -66,13 +66,14 @@
 
 Unity Inspector で設定：GameObject に `AdvertisementComponent` を追加し、実装タイプのドロップダウンから `CSJAdvertisementManager` を選択します。
 
-> **ヒント:** `com.gameframex.unity.entry` がインストールされている場合、`GameApp` 静的ファサードクラスでショートカット呼び出しが可能です：`GameApp.Advertisement` を `GameEntry.GetComponent<AdvertisementComponent>()` の代わりに使用できます。
-
 ```csharp
 using GameFrameX.Advertisement.Runtime;
 
+// 標準: GameEntry 経由（com.gameframex.unity.entry 非依存）
+var adComponent = GameEntry.GetComponent<AdvertisementComponent>();
+
 // サーバーサイド検証データを設定（オプション）
-GameApp.Advertisement.SetExtraData("userId", player.UserId);
+adComponent.SetExtraData("userId", player.UserId);
 
 // リワード動画広告を再生
 var option = new AdvertisementPlayOption
@@ -87,7 +88,23 @@ var option = new AdvertisementPlayOption
         }
     },
 };
-GameApp.Advertisement.Play(option);
+adComponent.Play(option);
+
+// ショートカット: GameApp 経由（com.gameframex.unity.entry が必要）
+GameApp.Advertisement.SetExtraData("userId", player.UserId);
+var option2 = new AdvertisementPlayOption
+{
+    OnSuccess    = (data) => Debug.Log("広告の表示に成功しました"),
+    OnFail       = (err) => Debug.LogError($"広告の表示に失敗しました: {err}"),
+    OnShowResult = (watched) =>
+    {
+        if (watched)
+        {
+            // ユーザーに報酬を付与
+        }
+    },
+};
+GameApp.Advertisement.Play(option2);
 ```
 
 ## プラットフォーム対応

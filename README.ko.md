@@ -66,13 +66,14 @@
 
 Unity Inspector에서 설정: GameObject에 `AdvertisementComponent`를 추가한 후, 구현 유형 드롭다운에서 `CSJAdvertisementManager`를 선택합니다.
 
-> **팁:** `com.gameframex.unity.entry`가 설치된 경우, `GameApp` 정적 파사드 클래스를 사용하여 빠르게 호출할 수 있습니다: `GameEntry.GetComponent<AdvertisementComponent>()` 대신 `GameApp.Advertisement`를 사용하세요.
-
 ```csharp
 using GameFrameX.Advertisement.Runtime;
 
+// 표준: GameEntry를 통해 (com.gameframex.unity.entry 비의존)
+var adComponent = GameEntry.GetComponent<AdvertisementComponent>();
+
 // 서버 측 검증 데이터 설정 (선택 사항)
-GameApp.Advertisement.SetExtraData("userId", player.UserId);
+adComponent.SetExtraData("userId", player.UserId);
 
 // 리워드 동영상 광고 재생
 var option = new AdvertisementPlayOption
@@ -87,7 +88,23 @@ var option = new AdvertisementPlayOption
         }
     },
 };
-GameApp.Advertisement.Play(option);
+adComponent.Play(option);
+
+// 단축: GameApp을 통해 (com.gameframex.unity.entry 필요)
+GameApp.Advertisement.SetExtraData("userId", player.UserId);
+var option2 = new AdvertisementPlayOption
+{
+    OnSuccess    = (data) => Debug.Log("광고 표시 성공"),
+    OnFail       = (err) => Debug.LogError($"광고 표시 실패: {err}"),
+    OnShowResult = (watched) =>
+    {
+        if (watched)
+        {
+            // 사용자에게 보상 지급
+        }
+    },
+};
+GameApp.Advertisement.Play(option2);
 ```
 
 ## 플랫폼 지원

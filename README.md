@@ -66,13 +66,14 @@ Or add via git URL in the Unity Package Manager window.
 
 Configure in Unity Inspector: add the `AdvertisementComponent` to a GameObject, then select `CSJAdvertisementManager` from the implementation dropdown.
 
-> **Tip:** If you have `com.gameframex.unity.entry` installed, you can use the `GameApp` static facade for shorter calls: `GameApp.Advertisement` instead of `GameEntry.GetComponent<AdvertisementComponent>()`.
-
 ```csharp
 using GameFrameX.Advertisement.Runtime;
 
+// Standard: via GameEntry (no dependency on com.gameframex.unity.entry)
+var adComponent = GameEntry.GetComponent<AdvertisementComponent>();
+
 // Set server-side verification data (optional)
-GameApp.Advertisement.SetExtraData("userId", player.UserId);
+adComponent.SetExtraData("userId", player.UserId);
 
 // Play rewarded video ad
 var option = new AdvertisementPlayOption
@@ -87,7 +88,23 @@ var option = new AdvertisementPlayOption
         }
     },
 };
-GameApp.Advertisement.Play(option);
+adComponent.Play(option);
+
+// Shortcut: via GameApp (requires com.gameframex.unity.entry)
+GameApp.Advertisement.SetExtraData("userId", player.UserId);
+var option2 = new AdvertisementPlayOption
+{
+    OnSuccess    = (data) => Debug.Log("Ad shown successfully"),
+    OnFail       = (err) => Debug.LogError($"Ad failed: {err}"),
+    OnShowResult = (watched) =>
+    {
+        if (watched)
+        {
+            // Reward the user
+        }
+    },
+};
+GameApp.Advertisement.Play(option2);
 ```
 
 ## Platform Support
