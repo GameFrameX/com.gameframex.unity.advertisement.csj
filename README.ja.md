@@ -66,14 +66,13 @@
 
 Unity Inspector で設定：GameObject に `AdvertisementComponent` を追加し、実装タイプのドロップダウンから `CSJAdvertisementManager` を選択します。
 
+> **ヒント:** `com.gameframex.unity.entry` がインストールされている場合、`GameApp` 静的ファサードクラスでショートカット呼び出しが可能です：`GameApp.Advertisement` を `GameEntry.GetComponent<AdvertisementComponent>()` の代わりに使用できます。
+
 ```csharp
 using GameFrameX.Advertisement.Runtime;
 
-// 広告コンポーネントを取得（通常はゲームエントリから）
-var adComponent = GameEntry.GetComponent<AdvertisementComponent>();
-
 // サーバーサイド検証データを設定（オプション）
-adComponent.SetExtraData("userId", player.UserId);
+GameApp.Advertisement.SetExtraData("userId", player.UserId);
 
 // リワード動画広告を再生
 var option = new AdvertisementPlayOption
@@ -88,7 +87,7 @@ var option = new AdvertisementPlayOption
         }
     },
 };
-adComponent.Play(option);
+GameApp.Advertisement.Play(option);
 ```
 
 ## プラットフォーム対応
