@@ -1,3 +1,5 @@
+#if UNITY_IOS || UNITY_ANDROID
+
 using UnityEngine;
 using UnityEngine.Scripting;
 
@@ -9,9 +11,9 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
         [Preserve]
         private void Start()
         {
-#if UNITY_IOS || UNITY_ANDROID
             _ = typeof(CSJAdvertisementManager);
-#endif
         }
     }
 }
+
+#endif

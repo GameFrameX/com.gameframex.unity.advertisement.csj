@@ -1,3 +1,5 @@
+#if UNITY_IOS || UNITY_ANDROID
+
 using System;
 using GameFrameX.Advertisement.Runtime;
 using GameFrameX.Runtime;
@@ -117,3 +119,5 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
         }
     }
 }
+
+#endif

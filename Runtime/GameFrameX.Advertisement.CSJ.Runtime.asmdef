@@ -1,18 +1,21 @@
 {
-  "name": "GameFrameX.Advertisement.CSJ.Runtime",
-  "rootNamespace": "GameFrameX.Advertisement.CSJ.Runtime",
-  "references": [
-    "GameFrameX.Runtime",
-    "GameFrameX.Event.Runtime",
-    "GameFrameX.Advertisement.Runtime"
-  ],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "overrideReferences": false,
-  "precompiledReferences": [],
-  "autoReferenced": true,
-  "defineConstraints": [],
-  "versionDefines": [],
-  "noEngineReferences": false
+    "name": "GameFrameX.Advertisement.CSJ.Runtime",
+    "rootNamespace": "GameFrameX.Advertisement.CSJ.Runtime",
+    "references": [
+        "GameFrameX.Runtime",
+        "GameFrameX.Advertisement.Runtime"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "iOS"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

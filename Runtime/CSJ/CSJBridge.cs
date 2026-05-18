@@ -27,6 +27,8 @@
 //   Official Documentation: https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
+#if UNITY_IOS || UNITY_ANDROID
+
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -126,3 +128,5 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
 #endif
     }
 }
+
+#endif
