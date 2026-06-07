@@ -77,7 +77,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## 플랫폼 지원
 
 | 플랫폼 | 지원 |
@@ -109,4 +108,4 @@ Then add the package to `dependencies`:
 
 ## 라이선스
 
-이 프로젝트는 [MIT 라이선스](LICENSE.md) 및 [Apache 라이선스 2.0](LICENSE.md) 듀얼 라이선스입니다.
+자세한 내용은 [LICENSE.md](LICENSE.md) 파일을 참조하세요.

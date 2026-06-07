@@ -77,7 +77,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## プラットフォーム対応
 
 | プラットフォーム | 対応 |
@@ -109,4 +108,4 @@ Then add the package to `dependencies`:
 
 ## ライセンス
 
-本プロジェクトは [MIT ライセンス](LICENSE.md) および [Apache ライセンス 2.0](LICENSE.md) のデュアルライセンスです。
+詳しくは [LICENSE.md](LICENSE.md) をご参照ください。

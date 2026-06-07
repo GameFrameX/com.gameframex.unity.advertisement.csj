@@ -77,7 +77,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## Platform Support
 
 | Platform | Supported |
@@ -109,4 +108,4 @@ Then add the package to `dependencies`:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md) and [Apache License 2.0](LICENSE.md).
+See [LICENSE.md](LICENSE.md) for license information.

@@ -77,7 +77,6 @@ Then add the package to `dependencies`:
 }
 ```
 
-
 ## 平台支持
 
 | 平台 | 支持 |
@@ -109,4 +108,4 @@ Then add the package to `dependencies`:
 
 ## 开源协议
 
-本项目基于 [MIT 许可证](LICENSE.md) 和 [Apache 许可证 2.0](LICENSE.md) 双重授权。
+详见 [LICENSE.md](LICENSE.md) 文件。
