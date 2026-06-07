@@ -49,64 +49,34 @@
 
 ### 설치
 
-1. [광고 코어 패키지](https://github.com/GameFrameX/com.gameframex.unity.advertisement) 설치
-2. 이 어댑터를 Unity Package Manager (UPM)로 추가:
+Unity 프로젝트의 `Packages/manifest.json`을 편집하여 `scopedRegistries` 섹션을 추가하세요:
+
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
+
+`scopes`는 이 레지스트리를 통해 어떤 패키지를 해석할지 제어합니다. `com.gameframex`로 시작하는 패키지만 이 레지스트리에서 가져옵니다.
+
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.advertisement": "https://github.com/GameFrameX/com.gameframex.unity.advertisement.git",
-    "com.gameframex.unity.advertisement.csj": "https://github.com/gameframex/com.gameframex.unity.advertisement.csj.git"
+    "com.gameframex.unity.advertisement.csj": "1.0.0"
   }
 }
 ```
 
-또는 Unity Package Manager 창에서 git URL로 추가.
-
-### 사용 예시
-
-Unity Inspector에서 설정: GameObject에 `AdvertisementComponent`를 추가한 후, 구현 유형 드롭다운에서 `CSJAdvertisementManager`를 선택합니다.
-
-```csharp
-using GameFrameX.Advertisement.Runtime;
-
-// 표준: GameEntry를 통해 (com.gameframex.unity.entry 비의존)
-var adComponent = GameEntry.GetComponent<AdvertisementComponent>();
-
-// 서버 측 검증 데이터 설정 (선택 사항)
-adComponent.SetExtraData("userId", player.UserId);
-
-// 리워드 동영상 광고 재생
-var option = new AdvertisementPlayOption
-{
-    OnSuccess    = (data) => Debug.Log("광고 표시 성공"),
-    OnFail       = (err) => Debug.LogError($"광고 표시 실패: {err}"),
-    OnShowResult = (watched) =>
-    {
-        if (watched)
-        {
-            // 사용자에게 보상 지급
-        }
-    },
-};
-adComponent.Play(option);
-
-// 단축: GameApp을 통해 (com.gameframex.unity.entry 필요)
-GameApp.Advertisement.SetExtraData("userId", player.UserId);
-var option2 = new AdvertisementPlayOption
-{
-    OnSuccess    = (data) => Debug.Log("광고 표시 성공"),
-    OnFail       = (err) => Debug.LogError($"광고 표시 실패: {err}"),
-    OnShowResult = (watched) =>
-    {
-        if (watched)
-        {
-            // 사용자에게 보상 지급
-        }
-    },
-};
-GameApp.Advertisement.Play(option2);
-```
 
 ## 플랫폼 지원
 

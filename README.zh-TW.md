@@ -49,64 +49,34 @@
 
 ### 安裝
 
-1. 安裝[廣告核心套件](https://github.com/GameFrameX/com.gameframex.unity.advertisement)
-2. 透過 Unity Package Manager (UPM) 新增本適配器：
+編輯 Unity 專案的 `Packages/manifest.json`，添加 `scopedRegistries` 部分：
+
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
+
+`scopes` 控制哪些套件透過此註冊表解析。只有以 `com.gameframex` 開頭的套件才會從這個註冊表取得。
+
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.advertisement": "https://github.com/GameFrameX/com.gameframex.unity.advertisement.git",
-    "com.gameframex.unity.advertisement.csj": "https://github.com/gameframex/com.gameframex.unity.advertisement.csj.git"
+    "com.gameframex.unity.advertisement.csj": "1.0.0"
   }
 }
 ```
 
-或在 Unity Package Manager 視窗中透過 git URL 新增。
-
-### 使用範例
-
-在 Unity Inspector 中設定：將 `AdvertisementComponent` 新增到 GameObject，然後在實作類型下拉選單中選擇 `CSJAdvertisementManager`。
-
-```csharp
-using GameFrameX.Advertisement.Runtime;
-
-// 標準方式：透過 GameEntry（不依賴 com.gameframex.unity.entry）
-var adComponent = GameEntry.GetComponent<AdvertisementComponent>();
-
-// 設定伺服器端驗證資料（可選）
-adComponent.SetExtraData("userId", player.UserId);
-
-// 播放激勵影片廣告
-var option = new AdvertisementPlayOption
-{
-    OnSuccess    = (data) => Debug.Log("廣告展示成功"),
-    OnFail       = (err) => Debug.LogError($"廣告展示失敗: {err}"),
-    OnShowResult = (watched) =>
-    {
-        if (watched)
-        {
-            // 發放獎勵
-        }
-    },
-};
-adComponent.Play(option);
-
-// 快捷方式：透過 GameApp（需要 com.gameframex.unity.entry）
-GameApp.Advertisement.SetExtraData("userId", player.UserId);
-var option2 = new AdvertisementPlayOption
-{
-    OnSuccess    = (data) => Debug.Log("廣告展示成功"),
-    OnFail       = (err) => Debug.LogError($"廣告展示失敗: {err}"),
-    OnShowResult = (watched) =>
-    {
-        if (watched)
-        {
-            // 發放獎勵
-        }
-    },
-};
-GameApp.Advertisement.Play(option2);
-```
 
 ## 平台支援
 

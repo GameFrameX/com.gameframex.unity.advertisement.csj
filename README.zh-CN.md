@@ -49,64 +49,34 @@
 
 ### 安装
 
-1. 安装[广告核心包](https://github.com/GameFrameX/com.gameframex.unity.advertisement)
-2. 通过 Unity Package Manager (UPM) 添加本适配器：
+编辑 Unity 项目的 `Packages/manifest.json`，添加 `scopedRegistries` 部分：
+
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
+
+`scopes` 控制哪些包通过此注册表解析。只有以 `com.gameframex` 开头的包才会从这个注册表获取。
+
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.advertisement": "https://github.com/GameFrameX/com.gameframex.unity.advertisement.git",
-    "com.gameframex.unity.advertisement.csj": "https://github.com/gameframex/com.gameframex.unity.advertisement.csj.git"
+    "com.gameframex.unity.advertisement.csj": "1.0.0"
   }
 }
 ```
 
-或在 Unity Package Manager 窗口中通过 git URL 添加。
-
-### 使用示例
-
-在 Unity Inspector 中配置：将 `AdvertisementComponent` 添加到 GameObject，然后在实现类型下拉框中选择 `CSJAdvertisementManager`。
-
-```csharp
-using GameFrameX.Advertisement.Runtime;
-
-// 标准方式：通过 GameEntry（不依赖 com.gameframex.unity.entry）
-var adComponent = GameEntry.GetComponent<AdvertisementComponent>();
-
-// 设置服务端验证数据（可选）
-adComponent.SetExtraData("userId", player.UserId);
-
-// 播放激励视频广告
-var option = new AdvertisementPlayOption
-{
-    OnSuccess    = (data) => Debug.Log("广告展示成功"),
-    OnFail       = (err) => Debug.LogError($"广告展示失败: {err}"),
-    OnShowResult = (watched) =>
-    {
-        if (watched)
-        {
-            // 发放奖励
-        }
-    },
-};
-adComponent.Play(option);
-
-// 快捷方式：通过 GameApp（需要 com.gameframex.unity.entry）
-GameApp.Advertisement.SetExtraData("userId", player.UserId);
-var option2 = new AdvertisementPlayOption
-{
-    OnSuccess    = (data) => Debug.Log("广告展示成功"),
-    OnFail       = (err) => Debug.LogError($"广告展示失败: {err}"),
-    OnShowResult = (watched) =>
-    {
-        if (watched)
-        {
-            // 发放奖励
-        }
-    },
-};
-GameApp.Advertisement.Play(option2);
-```
 
 ## 平台支持
 

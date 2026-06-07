@@ -49,64 +49,34 @@
 
 ### インストール
 
-1. [広告コアパッケージ](https://github.com/GameFrameX/com.gameframex.unity.advertisement)をインストール
-2. 本アダプターを Unity Package Manager (UPM) で追加：
+Unity プロジェクトの `Packages/manifest.json` を編集し、`scopedRegistries` セクションを追加してください：
+
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
+
+`scopes` は、どのパッケージをこのレジストリから解決するかを制御します。`com.gameframex` で始まるパッケージのみがこのレジストリから取得されます。
+
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.advertisement": "https://github.com/GameFrameX/com.gameframex.unity.advertisement.git",
-    "com.gameframex.unity.advertisement.csj": "https://github.com/gameframex/com.gameframex.unity.advertisement.csj.git"
+    "com.gameframex.unity.advertisement.csj": "1.0.0"
   }
 }
 ```
 
-または Unity Package Manager ウィンドウで git URL から追加。
-
-### 使用例
-
-Unity Inspector で設定：GameObject に `AdvertisementComponent` を追加し、実装タイプのドロップダウンから `CSJAdvertisementManager` を選択します。
-
-```csharp
-using GameFrameX.Advertisement.Runtime;
-
-// 標準: GameEntry 経由（com.gameframex.unity.entry 非依存）
-var adComponent = GameEntry.GetComponent<AdvertisementComponent>();
-
-// サーバーサイド検証データを設定（オプション）
-adComponent.SetExtraData("userId", player.UserId);
-
-// リワード動画広告を再生
-var option = new AdvertisementPlayOption
-{
-    OnSuccess    = (data) => Debug.Log("広告の表示に成功しました"),
-    OnFail       = (err) => Debug.LogError($"広告の表示に失敗しました: {err}"),
-    OnShowResult = (watched) =>
-    {
-        if (watched)
-        {
-            // ユーザーに報酬を付与
-        }
-    },
-};
-adComponent.Play(option);
-
-// ショートカット: GameApp 経由（com.gameframex.unity.entry が必要）
-GameApp.Advertisement.SetExtraData("userId", player.UserId);
-var option2 = new AdvertisementPlayOption
-{
-    OnSuccess    = (data) => Debug.Log("広告の表示に成功しました"),
-    OnFail       = (err) => Debug.LogError($"広告の表示に失敗しました: {err}"),
-    OnShowResult = (watched) =>
-    {
-        if (watched)
-        {
-            // ユーザーに報酬を付与
-        }
-    },
-};
-GameApp.Advertisement.Play(option2);
-```
 
 ## プラットフォーム対応
 

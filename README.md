@@ -49,64 +49,34 @@ This package is an **adapter implementation** of `BaseAdvertisementManager` from
 
 ### Installation
 
-1. Install the [Advertisement core package](https://github.com/GameFrameX/com.gameframex.unity.advertisement)
-2. Add this adapter via Unity Package Manager (UPM):
+Edit your Unity project's `Packages/manifest.json` and add the `scopedRegistries` section:
+
+```json
+{
+  "scopedRegistries": [
+    {
+      "name": "GameFrameX",
+      "url": "https://gameframex.upm.alianblank.uk",
+      "scopes": [
+        "com.gameframex"
+      ]
+    }
+  ]
+}
+```
+
+`scopes` controls which packages are resolved through this registry. Only packages whose names start with `com.gameframex` will be fetched from it.
+
+Then add the package to `dependencies`:
 
 ```json
 {
   "dependencies": {
-    "com.gameframex.unity.advertisement": "https://github.com/GameFrameX/com.gameframex.unity.advertisement.git",
-    "com.gameframex.unity.advertisement.csj": "https://github.com/gameframex/com.gameframex.unity.advertisement.csj.git"
+    "com.gameframex.unity.advertisement.csj": "1.0.0"
   }
 }
 ```
 
-Or add via git URL in the Unity Package Manager window.
-
-### Usage
-
-Configure in Unity Inspector: add the `AdvertisementComponent` to a GameObject, then select `CSJAdvertisementManager` from the implementation dropdown.
-
-```csharp
-using GameFrameX.Advertisement.Runtime;
-
-// Standard: via GameEntry (no dependency on com.gameframex.unity.entry)
-var adComponent = GameEntry.GetComponent<AdvertisementComponent>();
-
-// Set server-side verification data (optional)
-adComponent.SetExtraData("userId", player.UserId);
-
-// Play rewarded video ad
-var option = new AdvertisementPlayOption
-{
-    OnSuccess    = (data) => Debug.Log("Ad shown successfully"),
-    OnFail       = (err) => Debug.LogError($"Ad failed: {err}"),
-    OnShowResult = (watched) =>
-    {
-        if (watched)
-        {
-            // Reward the user
-        }
-    },
-};
-adComponent.Play(option);
-
-// Shortcut: via GameApp (requires com.gameframex.unity.entry)
-GameApp.Advertisement.SetExtraData("userId", player.UserId);
-var option2 = new AdvertisementPlayOption
-{
-    OnSuccess    = (data) => Debug.Log("Ad shown successfully"),
-    OnFail       = (err) => Debug.LogError($"Ad failed: {err}"),
-    OnShowResult = (watched) =>
-    {
-        if (watched)
-        {
-            // Reward the user
-        }
-    },
-};
-GameApp.Advertisement.Play(option2);
-```
 
 ## Platform Support
 
