@@ -1,25 +1,24 @@
 <div align="center">
 
-![GameFrameX Logo](https://download.alianblank.com/gameframex/gameframex_logo_320.png)
+<img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="Game Frame X Logo" width="160" />
 
 # Game Frame X Advertisement (CSJ / 穿山甲)
 
-[![Version](https://img.shields.io/github/v/release/gameframex/com.gameframex.unity.advertisement.csj?label=version&color=green)](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/releases)
-[![License](https://img.shields.io/badge/license-MIT+Apache%202.0-orange.svg)](LICENSE.md)
-[![Documentation](https://img.shields.io/badge/docs-gameframex-brightgreen.svg)](https://gameframex.doc.alianblank.com)
+[![License](https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.advertisement.csj)](https://github.com/GameFrameX/com.gameframex.unity.advertisement.csj/blob/main/LICENSE.md)
+[![Version](https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.advertisement.csj)](https://github.com/GameFrameX/com.gameframex.unity.advertisement.csj/releases)
+[![Documentation](https://img.shields.io/badge/Documentation-docs-blue)](https://gameframex.doc.alianblank.com)
 
-**인디 게임 개발자를 위한 올인원 솔루션 · 인디 개발자의 꿈을 실현**
+인디 게임 개발자를 위한 올인원 솔루션 · 인디 개발자의 꿈을 실현
 
-[📖 문서](https://gameframex.doc.alianblank.com) • [🚀 빠른 시작](#빠른-시작) • [💬 QQ 그룹](https://qm.qq.com/q/urCUAqJCJm)
+<br />
 
----
+[문서](https://gameframex.doc.alianblank.com) · [빠른 시작](#quick-start) · [QQ 그룹](https://qm.qq.com/q/urCUAqJCJm)
 
-🌐 **언어**: [English](README.md) | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | **한국어**
+<br />
 
----
+[English](README.md) | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | **한국어**
 
 </div>
-
 ## 프로젝트 개요
 
 [Game Frame X 광고 시스템](https://github.com/GameFrameX/com.gameframex.unity.advertisement)의穿山甲（CSJ/Pangle）플랫폼 어댑터. ByteDance의穿山甲광고 SDK를 사용하여 iOS/Android 앱을 위한 리워드 동영상 광고 통합을 제공합니다.

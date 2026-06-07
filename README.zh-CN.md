@@ -1,25 +1,24 @@
 <div align="center">
 
-![GameFrameX Logo](https://download.alianblank.com/gameframex/gameframex_logo_320.png)
+<img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="Game Frame X Logo" width="160" />
 
 # Game Frame X Advertisement (CSJ / 穿山甲)
 
-[![Version](https://img.shields.io/github/v/release/gameframex/com.gameframex.unity.advertisement.csj?label=version&color=green)](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/releases)
-[![License](https://img.shields.io/badge/license-MIT+Apache%202.0-orange.svg)](LICENSE.md)
-[![Documentation](https://img.shields.io/badge/docs-gameframex-brightgreen.svg)](https://gameframex.doc.alianblank.com)
+[![License](https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.advertisement.csj)](https://github.com/GameFrameX/com.gameframex.unity.advertisement.csj/blob/main/LICENSE.md)
+[![Version](https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.advertisement.csj)](https://github.com/GameFrameX/com.gameframex.unity.advertisement.csj/releases)
+[![Documentation](https://img.shields.io/badge/Documentation-docs-blue)](https://gameframex.doc.alianblank.com)
 
-**独立游戏前后端一体化解决方案 · 独立游戏开发者的圆梦大使**
+独立游戏前后端一体化解决方案 · 独立游戏开发者的圆梦大使
 
-[📖 文档](https://gameframex.doc.alianblank.com) • [🚀 快速开始](#快速开始) • [💬 QQ群](https://qm.qq.com/q/urCUAqJCJm)
+<br />
 
----
+[文档](https://gameframex.doc.alianblank.com) · [快速开始](#quick-start) · [QQ群](https://qm.qq.com/q/urCUAqJCJm)
 
-🌐 **语言**: [English](README.md) | **简体中文** | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
+<br />
 
----
+[English](README.md) | **简体中文** | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
 </div>
-
 ## 项目简介
 
 [Game Frame X 广告系统](https://github.com/GameFrameX/com.gameframex.unity.advertisement)的穿山甲（CSJ/Pangle）平台适配器。为 iOS 和 Android 应用提供基于字节跳动穿山甲广告 SDK 的激励视频广告集成。
