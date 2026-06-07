@@ -106,6 +106,13 @@ Then add the package to `dependencies`:
 - 穿山甲（CSJ/Pangle）플랫폼 리워드 동영상 광고 지원
 - IL2CPP 스트리핑 보호
 
+
+## 의존성
+
+| 패키지 | 설명 |
+|--------|------|
+| (无) | - |
+
 ## 라이선스
 
 자세한 내용은 [LICENSE.md](LICENSE.md) 파일을 참조하세요.

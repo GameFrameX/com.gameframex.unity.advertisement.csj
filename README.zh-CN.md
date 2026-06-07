@@ -106,6 +106,13 @@ Then add the package to `dependencies`:
 - 支持穿山甲（CSJ/Pangle）平台激励视频广告
 - IL2CPP 裁剪保护
 
+
+## 依赖
+
+| 包 | 说明 |
+|----|------|
+| (无) | - |
+
 ## 开源协议
 
 详见 [LICENSE.md](LICENSE.md) 文件。
