@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/compare/1.0.1...1.0.2) (2026-06-22)
+
+
+### Bug Fixes
+
+* **license:** 补全 LICENSE.md 的 Unity meta 文件 ([8efce17](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/commit/8efce170eec69de0918e36b4ca34e20102907051))
+
 ## [1.0.1](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/compare/1.0.0...1.0.1) (2026-06-08)
 
 
