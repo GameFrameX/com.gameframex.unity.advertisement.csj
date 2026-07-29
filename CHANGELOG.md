@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/compare/1.0.2...1.0.3) (2026-07-29)
+
+
+### Bug Fixes
+
+* **package:** 补齐缺失的依赖声明 ([a561c52](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/commit/a561c52ec3c87adec9bb443ffcfca39ef25da290))
+
 ## [1.0.2](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/compare/1.0.1...1.0.2) (2026-06-22)
 
 
