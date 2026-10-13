@@ -40,6 +40,8 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
         {
 #if UNITY_IOS || UNITY_ANDROID
             _ = typeof(CSJAdvertisementManager);
+            _ = typeof(CSJAdvertisementConfig);
+            _ = typeof(CSJAdvertisementBootstrap);
 #endif
         }
     }

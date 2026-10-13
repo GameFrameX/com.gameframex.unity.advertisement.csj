@@ -8,10 +8,22 @@ using UnityEngine.Scripting;
 
 namespace GameFrameX.Advertisement.CSJ.Runtime
 {
+    /// <summary>
+    /// 穿山甲（CSJ）聚合广告管理器。
+    /// </summary>
+    /// <remarks>
+    /// 渠道身份常量 <see cref="ChannelId"/> 供注册表显式路由与人工选型使用；初始化统一走
+    /// <see cref="Initialize(AdvertisementConfig)"/> 的强类型 <c>CSJAdvertisementConfig</c>（由 CSJAdvertisementBootstrap 工厂闭包注入）。
+    /// </remarks>
     [Preserve]
-    [AdvertisementConfig(typeof(CSJAdvertisementConfig))]
-    public sealed class CSJAdvertisementManager : BaseAdvertisementManager
+    public sealed class CSJAdvertisementManager : BaseAdvertisementManager, IShutdownableModule
     {
+        /// <summary>
+        /// 穿山甲渠道唯一标识。
+        /// </summary>
+        [Preserve]
+        public const string ChannelId = "csj";
+
         private string _adUnitId;
         private string _appId;
         private bool _isDebug;
@@ -31,7 +43,9 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
             _adUnitId = csjConfig.adUnitId;
             _isDebug = csjConfig.isDebug;
 
+#if !UNITY_EDITOR
             CSJBridge.Init(_appId, _isDebug);
+#endif
         }
 
         [Preserve]
@@ -113,7 +127,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
         }
 #pragma warning restore CS0618
 
-        protected override void Shutdown()
+        public void Shutdown()
         {
             CSJBridge.Destroy();
         }
