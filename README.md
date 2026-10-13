@@ -35,12 +35,13 @@ CSJ (穿山甲/Pangle) platform adapter for the [Game Frame X Advertisement](htt
 
 ## Architecture
 
-This package is an **adapter implementation** of `BaseAdvertisementManager` from the Game Frame X Advertisement core. It is discovered and loaded automatically by `AdvertisementComponent` via Unity Inspector configuration.
+This package is an **adapter implementation** of `BaseAdvertisementManager` from the Game Frame X Advertisement core. It registers itself into the core package's `AdvertisementRegistry` via `CSJAdvertisementBootstrap` during the `BeforeSceneLoad` phase (if this package is not installed the code is stripped and no registration happens; referencing the package is the registration). Channel initialization is performed by the Bootstrap factory closure, which injects the strongly typed configuration.
 
 | Class | Description |
 |-------|-------------|
 | `CSJAdvertisementManager` | Rewarded video ad manager — load, show, and lifecycle |
-| `CSJAdvertisementConfig` | Configuration with appId and adUnitId fields |
+| `CSJAdvertisementConfig` | Configuration with appId and adUnitId fields, injected at startup via `CSJAdvertisementBootstrap.Config` |
+| `CSJAdvertisementBootstrap` | Channel bootstrap registration — exposes a startup-time `Config` static property and self-registers into `AdvertisementRegistry` at `BeforeSceneLoad` |
 | `CSJBridge` | Native bridge for iOS/Android platform calls |
 | `CSJNativeMessageHandler` | Native message callback handler |
 | `GameFrameXAdvertisementCSJCroppingHelper` | IL2CPP link.xml alternative — preserves type references |
@@ -79,6 +80,24 @@ Choose one of the following methods:
    ```
 3. Use **Package Manager** in Unity with **Git URL**: `https://github.com/gameframex/com.gameframex.unity.advertisement.csj.git`
 4. Clone the repository into your Unity project's `Packages` directory. It will be loaded automatically.
+
+### Channel Registration & Configuration
+
+Assign `CSJAdvertisementBootstrap.Config` at startup (before the first ad call):
+
+```csharp
+using GameFrameX.Advertisement.CSJ.Runtime;
+
+CSJAdvertisementBootstrap.Config = new CSJAdvertisementConfig
+{
+    appId = "your CSJ AppId",
+    adUnitId = "your ad unit id",
+    isDebug = false,
+};
+```
+
+- This package self-registers into `AdvertisementRegistry` via `CSJAdvertisementBootstrap`; the channel constant is `ChannelId = "csj"`;
+- When installed alongside the TopOn channel, use `AdvertisementRegistry.ResolveManager("csj")` for explicit routing / manual selection.
 ## Platform Support
 
 | Platform | Supported |
@@ -101,6 +120,11 @@ Choose one of the following methods:
 - GitHub Issues: [Report a bug](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/issues)
 
 ## Changelog
+
+### v2.0.0
+
+- The channel now self-registers into the core package's `AdvertisementRegistry` via `CSJAdvertisementBootstrap` at `BeforeSceneLoad`; configuration is injected at startup via `CSJAdvertisementBootstrap.Config`
+- **Breaking change**: the `AdvertisementComponent` Inspector type dropdown and macro-selected ad unit ID fields have been removed; appId / adUnitId are now injected via `CSJAdvertisementBootstrap.Config`
 
 ### v1.0.0
 

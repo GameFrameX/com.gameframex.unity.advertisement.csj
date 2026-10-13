@@ -35,12 +35,13 @@
 
 ## アーキテクチャ
 
-本パッケージは Game Frame X 広告コアの `BaseAdvertisementManager` の**アダプター実装**です。Unity Inspector で `AdvertisementComponent` を設定することで自動的に検出・読み込みされます。
+本パッケージは Game Frame X 広告コアの `BaseAdvertisementManager` の**アダプター実装**です。`CSJAdvertisementBootstrap` が `BeforeSceneLoad` フェーズでコアパッケージの `AdvertisementRegistry` に自己登録します（本パッケージが未インストールの場合はコードがストリッピングされ、登録は行われません。参照することが登録です）。チャネルの初期化は Bootstrap のファクトリクロージャーにより厳密に型指定された設定を注入して行われます。
 
 | クラス | 説明 |
 |--------|------|
 | `CSJAdvertisementManager` | リワード動画広告マネージャー — ロード、表示、ライフサイクル管理 |
-| `CSJAdvertisementConfig` | appId と adUnitId フィールドを含む広告設定 |
+| `CSJAdvertisementConfig` | appId と adUnitId フィールドを含む広告設定。起動時に `CSJAdvertisementBootstrap.Config` 経由で注入 |
+| `CSJAdvertisementBootstrap` | チャネル起動登録 — 起動時 `Config` 静的プロパティを持ち、`BeforeSceneLoad` で `AdvertisementRegistry` に自己登録 |
 | `CSJBridge` | iOS/Android ネイティブプラットフォーム呼び出しブリッジ |
 | `CSJNativeMessageHandler` | ネイティブメッセージコールバックハンドラー |
 | `GameFrameXAdvertisementCSJCroppingHelper` | IL2CPP link.xml の代替 — 型参照を保持 |
@@ -79,6 +80,24 @@
    ```
 3. Unity の **Package Manager** で **Git URL** を使用して追加：`https://github.com/gameframex/com.gameframex.unity.advertisement.csj.git`
 4. リポジトリを Unity プロジェクトの `Packages` ディレクトリにクローンしてください。自動的に読み込まれます。
+
+### チャネル登録と設定
+
+起動時（初回の広告呼び出し前）に `CSJAdvertisementBootstrap.Config` を設定します：
+
+```csharp
+using GameFrameX.Advertisement.CSJ.Runtime;
+
+CSJAdvertisementBootstrap.Config = new CSJAdvertisementConfig
+{
+    appId = "あなたの穿山甲 AppId",
+    adUnitId = "あなたの広告プレースメントID",
+    isDebug = false,
+};
+```
+
+- 本パッケージは `CSJAdvertisementBootstrap` 経由で `AdvertisementRegistry` に自己登録します。チャネル定数は `ChannelId = "csj"` です；
+- TopOn チャネルと併用する場合は、`AdvertisementRegistry.ResolveManager("csj")` で明示的にルーティングし手動選択できます。
 ## プラットフォーム対応
 
 | プラットフォーム | 対応 |
@@ -101,6 +120,11 @@
 - GitHub Issues：[バグ報告](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/issues)
 
 ## 変更履歴
+
+### v2.0.0
+
+- チャネルは `CSJAdvertisementBootstrap` により `BeforeSceneLoad` フェーズでコアパッケージの `AdvertisementRegistry` に自己登録する方式に変更。設定は起動時に `CSJAdvertisementBootstrap.Config` 経由で注入
+- **破壊的変更**：`AdvertisementComponent` の Inspector タイプドロップダウンとマクロ選択の広告プレースメントIDフィールドを削除。appId / adUnitId は `CSJAdvertisementBootstrap.Config` 経由で注入されます
 
 ### v1.0.0
 

@@ -35,12 +35,13 @@
 
 ## 架构概览
 
-本包是 Game Frame X 广告核心 `BaseAdvertisementManager` 的**适配器实现**。通过 Unity Inspector 配置 `AdvertisementComponent` 后，自动发现并加载。
+本包是 Game Frame X 广告核心 `BaseAdvertisementManager` 的**适配器实现**。通过 `CSJAdvertisementBootstrap` 在 `BeforeSceneLoad` 阶段自注册进主包 `AdvertisementRegistry`（未安装本包时代码被裁剪，注册不会发生；引用即注册）；渠道初始化由 Bootstrap 工厂闭包注入强类型配置。
 
 | 类 | 说明 |
 |----|------|
 | `CSJAdvertisementManager` | 激励视频广告管理器 — 加载、展示及生命周期管理 |
-| `CSJAdvertisementConfig` | 广告配置，包含 appId 和 adUnitId 字段 |
+| `CSJAdvertisementConfig` | 广告配置，包含 appId 和 adUnitId 字段，经 `CSJAdvertisementBootstrap.Config` 在启动期注入 |
+| `CSJAdvertisementBootstrap` | 渠道启动注册 — 含启动期 `Config` 静态属性，`BeforeSceneLoad` 阶段自注册进 `AdvertisementRegistry` |
 | `CSJBridge` | iOS/Android 原生平台调用桥接 |
 | `CSJNativeMessageHandler` | 原生消息回调处理器 |
 | `GameFrameXAdvertisementCSJCroppingHelper` | IL2CPP link.xml 替代方案 — 保留类型引用 |
@@ -79,6 +80,24 @@
    ```
 3. 在 Unity 的 `Package Manager` 中使用 `Git URL` 的方式添加库，地址为：`https://github.com/gameframex/com.gameframex.unity.advertisement.csj.git`
 4. 直接下载仓库放置到 Unity 项目的 `Packages` 目录下，会自动加载识别。
+
+### 渠道注册与配置
+
+在启动期（首次广告调用前）对 `CSJAdvertisementBootstrap.Config` 赋值：
+
+```csharp
+using GameFrameX.Advertisement.CSJ.Runtime;
+
+CSJAdvertisementBootstrap.Config = new CSJAdvertisementConfig
+{
+    appId = "你的穿山甲 AppId",
+    adUnitId = "你的广告位ID",
+    isDebug = false,
+};
+```
+
+- 本包通过 `CSJAdvertisementBootstrap` 自注册进 `AdvertisementRegistry`，渠道常量 `ChannelId = "csj"`；
+- 与 TopOn 渠道同装时，可用 `AdvertisementRegistry.ResolveManager("csj")` 显式路由做人工选型。
 ## 平台支持
 
 | 平台 | 支持 |
@@ -101,6 +120,11 @@
 - GitHub Issues：[报告问题](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/issues)
 
 ## 更新日志
+
+### v2.0.0
+
+- 渠道改为通过 `CSJAdvertisementBootstrap` 在 `BeforeSceneLoad` 阶段自注册进主包 `AdvertisementRegistry`，配置经 `CSJAdvertisementBootstrap.Config` 启动期注入
+- **破坏性变更**：`AdvertisementComponent` 的 Inspector 类型下拉与宏选广告位ID字段已移除，appId / adUnitId 改经 `CSJAdvertisementBootstrap.Config` 注入
 
 ### v1.0.0
 

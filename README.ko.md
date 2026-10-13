@@ -35,12 +35,13 @@
 
 ## 아키텍처
 
-이 패키지는 Game Frame X 광고 코어의 `BaseAdvertisementManager` **어댑터 구현**입니다. Unity Inspector에서 `AdvertisementComponent`를 설정하면 자동으로 검색 및 로드됩니다.
+이 패키지는 Game Frame X 광고 코어의 `BaseAdvertisementManager` **어댑터 구현**입니다. `CSJAdvertisementBootstrap`가 `BeforeSceneLoad` 단계에서 코어 패키지의 `AdvertisementRegistry`에 자동 등록합니다(이 패키지가 설치되지 않으면 코드가 스트리핑되어 등록이 일어나지 않습니다. 참조가 곧 등록입니다). 채널 초기화는 Bootstrap 팩토리 클로저가 강타입 설정을 주입하여 수행합니다.
 
 | 클래스 | 설명 |
 |--------|------|
 | `CSJAdvertisementManager` | 리워드 동영상 광고 관리자 — 로드, 표시 및 수명 주기 관리 |
-| `CSJAdvertisementConfig` | appId 및 adUnitId 필드가 포함된 광고 설정 |
+| `CSJAdvertisementConfig` | appId 및 adUnitId 필드가 포함된 광고 설정. 시작 시 `CSJAdvertisementBootstrap.Config`를 통해 주입 |
+| `CSJAdvertisementBootstrap` | 채널 부트스트랩 등록 — 시작 시점 `Config` 정적 속성을 제공하며 `BeforeSceneLoad`에서 `AdvertisementRegistry`에 자동 등록 |
 | `CSJBridge` | iOS/Android 네이티브 플랫폼 호출 브릿지 |
 | `CSJNativeMessageHandler` | 네이티브 메시지 콜백 핸들러 |
 | `GameFrameXAdvertisementCSJCroppingHelper` | IL2CPP link.xml 대체 — 타입 참조 유지 |
@@ -79,6 +80,24 @@
    ```
 3. Unity의 **Package Manager**에서 **Git URL**을 사용하여 추가: `https://github.com/gameframex/com.gameframex.unity.advertisement.csj.git`
 4. 리포지토리를 Unity 프로젝트의 `Packages` 디렉토리에 클론하세요. 자동으로 로드됩니다.
+
+### 채널 등록 및 설정
+
+시작 시점(첫 광고 호출 전)에 `CSJAdvertisementBootstrap.Config`를 할당합니다:
+
+```csharp
+using GameFrameX.Advertisement.CSJ.Runtime;
+
+CSJAdvertisementBootstrap.Config = new CSJAdvertisementConfig
+{
+    appId = "자신의 CSJ(穿山甲) AppId",
+    adUnitId = "자신의 광고 소재 ID",
+    isDebug = false,
+};
+```
+
+- 이 패키지는 `CSJAdvertisementBootstrap`를 통해 `AdvertisementRegistry`에 자동 등록되며, 채널 상수는 `ChannelId = "csj"`입니다;
+- TopOn 채널과 함께 설치한 경우 `AdvertisementRegistry.ResolveManager("csj")`로 명시적 라우팅하여 수동 선택할 수 있습니다.
 ## 플랫폼 지원
 
 | 플랫폼 | 지원 |
@@ -101,6 +120,11 @@
 - GitHub Issues: [버그 보고](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/issues)
 
 ## 변경 로그
+
+### v2.0.0
+
+- 채널이 `CSJAdvertisementBootstrap`를 통해 `BeforeSceneLoad` 단계에서 코어 패키지의 `AdvertisementRegistry`에 자동 등록되도록 변경. 설정은 시작 시 `CSJAdvertisementBootstrap.Config`를 통해 주입
+- **파괴적 변경**: `AdvertisementComponent`의 Inspector 타입 드롭다운과 매크로 선택 광고 소재 ID 필드가 제거되었으며, appId / adUnitId는 이제 `CSJAdvertisementBootstrap.Config`를 통해 주입됩니다
 
 ### v1.0.0
 
