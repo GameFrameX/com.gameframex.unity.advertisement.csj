@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/compare/2.0.0...2.0.1) (2026-10-15)
+
+
+### Bug Fixes
+
+* **advertisement.csj:** 显式限定 DontDestroyOnLoad 调用 ([6b4af28](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/commit/6b4af287a32a1f3e036efac5a4ad9602cd83355b))
+
 # [2.0.0](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/compare/1.0.3...2.0.0) (2026-10-15)
 
 

@@ -3,7 +3,7 @@
     "displayName": "Game Frame X Advertisement (CSJ/穿山甲)",
     "category": "Game Frame X",
     "description": "GameFrameX Advertisement CSJ — CSJ (穿山甲/Pangle) rewarded video ad adapter for GameFrameX Advertisement on iOS and Android. Implements BaseAdvertisementManager as CSJAdvertisementManager handling load, show and lifecycle, bridged natively via CSJBridge with CSJNativeMessageHandler callbacks. CSJAdvertisementBootstrap self-registers the channel into AdvertisementRegistry at BeforeSceneLoad and injects the strongly typed appId/adUnitId config at startup; code is conditionally compiled per platform and protected against IL2CPP stripping. Docs: https://gameframex.doc.alianblank.com\n\nGameFrameX Advertisement CSJ — GameFrameX Advertisement 的穿山甲（CSJ/Pangle）激励视频广告渠道包，支持 iOS 与 Android。以 CSJAdvertisementManager 实现 BaseAdvertisementManager，负责加载、展示与生命周期管理，经 CSJBridge 原生桥接并由 CSJNativeMessageHandler 处理回调。CSJAdvertisementBootstrap 在 BeforeSceneLoad 阶段自注册进 AdvertisementRegistry，并在启动期注入含 appId 与 adUnitId 的强类型配置；代码按平台条件编译，并带 IL2CPP 裁剪保护。文档：https://gameframex.doc.alianblank.com",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "unity": "2019.4",
     "keywords": [
         "Game Frame X",
