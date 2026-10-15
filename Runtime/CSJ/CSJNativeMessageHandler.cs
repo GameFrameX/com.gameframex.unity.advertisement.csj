@@ -52,7 +52,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
             }
 
             var go = new GameObject("CSJBridgeReceiver");
-            DontDestroyOnLoad(go);
+            UnityEngine.Object.DontDestroyOnLoad(go);
             _instance = go.AddComponent<CSJNativeMessageHandler>();
         }
 
