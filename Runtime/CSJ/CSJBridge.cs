@@ -32,13 +32,12 @@
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Advertisement.CSJ.Runtime
 {
     internal static class CSJBridge
     {
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public static void Init(string appId, bool debug)
         {
 #if UNITY_IOS
@@ -54,7 +53,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
 #endif
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public static void LoadAd(string slotId, string userId, string extarData, Action onSuccess, Action<string> onFail)
         {
 #if UNITY_IOS
@@ -68,7 +67,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
 #endif
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public static bool IsAdReady()
         {
 #if UNITY_IOS
@@ -83,7 +82,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
 #endif
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public static void Show(Action<bool> onRewardVerify, Action<string> onFail)
         {
 #if UNITY_IOS
@@ -97,7 +96,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
 #endif
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public static void Destroy()
         {
 #if UNITY_IOS

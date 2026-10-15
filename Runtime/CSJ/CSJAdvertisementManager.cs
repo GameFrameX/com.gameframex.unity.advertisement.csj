@@ -4,7 +4,6 @@ using System;
 using GameFrameX.Advertisement.Runtime;
 using GameFrameX.Runtime;
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Advertisement.CSJ.Runtime
 {
@@ -15,20 +14,20 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
     /// 渠道身份常量 <see cref="ChannelId"/> 供注册表显式路由与人工选型使用；初始化统一走
     /// <see cref="Initialize(AdvertisementConfig)"/> 的强类型 <c>CSJAdvertisementConfig</c>（由 CSJAdvertisementBootstrap 工厂闭包注入）。
     /// </remarks>
-    [Preserve]
+    [UnityEngine.Scripting.Preserve]
     public sealed class CSJAdvertisementManager : BaseAdvertisementManager, IShutdownableModule
     {
         /// <summary>
         /// 穿山甲渠道唯一标识。
         /// </summary>
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public const string ChannelId = "csj";
 
         private string _adUnitId;
         private string _appId;
         private bool _isDebug;
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public override void Initialize(AdvertisementConfig config)
         {
             var csjConfig = config as CSJAdvertisementConfig;
@@ -48,7 +47,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
 #endif
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public override void Play(AdvertisementPlayOption option)
         {
 #pragma warning disable CS0618
@@ -65,7 +64,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
         }
 
 #pragma warning disable CS0618
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public override void Play(Action<bool> playResult, string customData = null)
         {
             Load((s) =>
@@ -87,7 +86,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
             }, customData);
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public override void Show(Action<string> success, Action<string> fail, Action<bool> onShowResult, string customData = null)
         {
             if (!CSJBridge.IsAdReady())
@@ -113,7 +112,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
                 });
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public override void Load(Action<string> success, Action<string> fail, string extraData = null)
         {
             var userId = GetExtraDataValue("userId");
@@ -127,6 +126,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
         }
 #pragma warning restore CS0618
 
+        [UnityEngine.Scripting.Preserve]
         public void Shutdown()
         {
             CSJBridge.Destroy();

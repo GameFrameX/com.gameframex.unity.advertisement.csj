@@ -2,18 +2,17 @@
 
 using System;
 using GameFrameX.Advertisement.Runtime;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Advertisement.CSJ.Runtime
 {
-    [Preserve]
+    [UnityEngine.Scripting.Preserve]
     [Serializable]
     public class CSJAdvertisementConfig : AdvertisementConfig
     {
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public string appId;
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public string adUnitId;
     }
 }

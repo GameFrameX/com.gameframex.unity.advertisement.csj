@@ -31,7 +31,6 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace GameFrameX.Advertisement.CSJ.Runtime
 {
@@ -44,7 +43,7 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
         private static Action<bool> s_onRewardVerify;
         private static Action<string> s_onShowFail;
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public static void EnsureInstance()
         {
             if (_instance != null)
@@ -57,21 +56,21 @@ namespace GameFrameX.Advertisement.CSJ.Runtime
             _instance = go.AddComponent<CSJNativeMessageHandler>();
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public static void SetLoadCallbacks(Action onSuccess, Action<string> onFail)
         {
             s_onLoadSuccess = onSuccess;
             s_onLoadFail = onFail;
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         public static void SetShowCallbacks(Action<bool> onRewardVerify, Action<string> onFail)
         {
             s_onRewardVerify = onRewardVerify;
             s_onShowFail = onFail;
         }
 
-        [Preserve]
+        [UnityEngine.Scripting.Preserve]
         private void OnNativeMessage(string message)
         {
             if (string.IsNullOrEmpty(message))
