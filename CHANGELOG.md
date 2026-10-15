@@ -1,3 +1,21 @@
+# [2.0.0](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/compare/1.0.3...2.0.0) (2026-10-15)
+
+
+### doc
+
+* **readme:** 更新 v2.0.0 渠道注册与配置说明 ([b124258](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/commit/b124258ad81457aaaa39cce2f9a3c65698cde5ec))
+
+
+### Features
+
+* **advertisement.csj:** 适配 GameFrameX 3.0.0 ([b500a9a](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/commit/b500a9a3d66a29fe9bb8248196e7a0e95a4383a6))
+* **advertisement:** 适配新模块契约并新增 Bootstrap 自注册 ([442e8e5](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/commit/442e8e57d78cb5954525cd0f2f6b55b4bcf124f4))
+
+
+### BREAKING CHANGES
+
+* **readme:** 移除 AdvertisementComponent Inspector 类型下拉与宏选广告位ID字段，配置改经 CSJAdvertisementBootstrap.Config 启动期注入
+
 # [2.0.0](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/compare/1.0.3...2.0.0) (2026-10-08)
 
 
