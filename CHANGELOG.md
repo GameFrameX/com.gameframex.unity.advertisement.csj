@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/compare/2.0.1...2.0.2) (2026-11-10)
+
+
+### Bug Fixes
+
+* **advertisement.csj:** 添加完整 link.xml 防代码裁剪保护 ([9246d39](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/commit/9246d3927f5de24f71f85d138524490ab6eb9cef))
+
 ## [2.0.1](https://github.com/gameframex/com.gameframex.unity.advertisement.csj/compare/2.0.0...2.0.1) (2026-10-15)
 
 
